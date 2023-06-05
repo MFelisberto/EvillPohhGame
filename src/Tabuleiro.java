@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class Tabuleiro extends JPanel {
-    private static final int MAXLIN = 20;
-    private static final int MAXCOL = 20;
+    private static final int MAXLIN = 10;
+    private static final int MAXCOL = 10;
     private ElementoBasico[][] celulas;
 
     private Personagem principal;
