@@ -115,7 +115,7 @@ public class Tabuleiro extends JPanel {
         Random r = new Random();
         switch (elem) {
            case ' ': return new Fundo("Fundo",lin,col,this);
-           case '-': return new Eca("Dica",lin,col,this);
+           case '-': return new Parede("Dica",lin,col,this);
            case '?': return new Pista("Pista",r.nextInt(15), lin,col,this);
            case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
            case '+': return new TBD("Portal","portal.png",lin,col,this);     

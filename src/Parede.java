@@ -1,9 +1,9 @@
 
 
-public class Eca extends ElementoBasico {
+public class Parede extends ElementoBasico {
 
 
-    public Eca(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
+    public Parede(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
         super(id, "wall.jpg", linInicial, colInicial, tabuleiro);
     }
 
