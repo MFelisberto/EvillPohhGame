@@ -5,6 +5,7 @@ public class Personagem extends ElementoBasico {
 
     public Personagem(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
         super(id, iconPath, linInicial, colInicial, tabuleiro);
+        
     }
 
     public void setAnterior(ElementoBasico anterior){

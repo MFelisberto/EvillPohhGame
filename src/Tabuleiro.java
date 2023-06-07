@@ -24,7 +24,7 @@ public class Tabuleiro extends JPanel {
         for (int i = 0; i < MAXLIN; i++) {
             for (int j = 0; j < MAXCOL; j++) {
 
-                celulas[i][j] = new Fundo("Fundo[" + i + "][" + j + "]", i, j, this);
+                celulas[i][j] = new Fundo("Fundo[" + i + "][" + j + "]", i,"floorcave.jpg", j, this);
                 this.add(celulas[i][j]);
             }
         }
@@ -115,17 +115,17 @@ public class Tabuleiro extends JPanel {
     public ElementoBasico getElem(char elem, int lin, int col) {
         Random r = new Random();
         switch (elem) {
-           case ' ': return new Fundo("Fundo",lin,col,this);
-           case '-': return new Parede("Dica",lin,col,this);
+           case ' ': return new Fundo("Fundo",lin,"floorcave.jpg",col,this);
+           case '-': return new Parede("Dica",lin,"wall.jpg",col,this);
            case '?': return new Pista("Pista",r.nextInt(15), lin,col,this);
            case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
            case '+': return new TBD("Portal","portal.png",lin,col,this); 
-           case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,col,this);
+           case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"floorcave.jpg",col,this);
                         antg = new Inimigo("Inimigo","dog3.png",lin,col,this);
                         antg.setAnterior(anterior);
                         return antg;
        }    
-           case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,col,this);
+           case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,"floorcave.jpg",col,this);
                         principal = new Personagem("boneco","mutley.jpg",lin,col,this);
                         principal.setAnterior(anterior);
                         return principal;

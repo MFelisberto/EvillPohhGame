@@ -1,4 +1,5 @@
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ public class App extends JFrame implements ActionListener{
         tabuleiro = new Tabuleiro();
         
         JPanel botoesDirecao = new JPanel(new FlowLayout());
-        
+         
         JButton butDir = new JButton("Direita");
         butDir.addActionListener(this);
        
@@ -37,8 +38,10 @@ public class App extends JFrame implements ActionListener{
         botoesDirecao.add(butCima);
         botoesDirecao.add(butBaixo);
         
+
+        
       
-        JPanel painelGeral = new JPanel();
+        JPanel painelGeral = new BackgroundPanel();
         painelGeral.setLayout(new BoxLayout(painelGeral, BoxLayout.PAGE_AXIS));
         painelGeral.add(botoesDirecao);
         painelGeral.add(tabuleiro);
@@ -90,5 +93,21 @@ public class App extends JFrame implements ActionListener{
                 new App();
             }
         });
+    }
+    private static class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
+
+        public BackgroundPanel() {
+            // Carrega a imagem de fundo
+            this.backgroundImage = new ImageIcon("./wall.jpg").getImage();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+            // Desenha a imagem de fundo
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 }

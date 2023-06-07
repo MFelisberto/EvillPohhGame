@@ -12,6 +12,8 @@ public abstract class ElementoBasico extends JButton {
     private int col;
 
     
+
+    
     public ElementoBasico(String id,String iconPath,int linInicial,int colInicial,Tabuleiro tabuleiro){
         this.id = id;
         this.lin = linInicial;
@@ -22,6 +24,10 @@ public abstract class ElementoBasico extends JButton {
         this.setIcon( resize(this.imagem, 90, 50) ); 
         //this.setBorder(BorderFactory.createBevelBorder(0,Color.RED, Color.BLACK ));
         this.setMargin(new Insets(0,0,0,0));
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
+        this.setMargin(new Insets(0, 0, 0, 0));
     }
 
     public ElementoBasico(String id,int linInicial,int colInicial,Tabuleiro tabuleiro){
