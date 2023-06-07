@@ -11,6 +11,7 @@ public class App extends JFrame implements ActionListener{
     
     private Tabuleiro tabuleiro;
     private Personagem personagem;
+    private Inimigo inimigo;
 
     public App() {
         super();
@@ -47,7 +48,8 @@ public class App extends JFrame implements ActionListener{
         tabuleiro.loadLevel(2);
         personagem = tabuleiro.getPrincipal();
         personagem.setAnterior(personagem.getAnterior());
-        
+        inimigo = tabuleiro.getAntg();
+        inimigo.setAnterior(inimigo.getAnterior());
         // Exibe a janela
         this.add(painelGeral);
         this.setSize(900,650);
@@ -62,15 +64,19 @@ public class App extends JFrame implements ActionListener{
         JButton but = (JButton)arg0.getSource();
         if (but.getText().equals("Direita")){
             personagem.moveDireita();
+            inimigo.moveAleat();
         }
         if (but.getText().equals("Esquerda")){
             personagem.moveEsquerda();
+            inimigo.moveAleat();
         }
         if (but.getText().equals("Acima")){
             personagem.moveCima();
+            inimigo.moveAleat();
         }
         if (but.getText().equals("Abaixo")){
             personagem.moveBaixo();
+            inimigo.moveAleat();
         }
         tabuleiro.atualizaVisualizacao();
     }

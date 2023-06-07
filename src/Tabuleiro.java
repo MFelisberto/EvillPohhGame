@@ -14,6 +14,7 @@ public class Tabuleiro extends JPanel {
     private ElementoBasico[][] celulas;
 
     private Personagem principal;
+    private Inimigo antg;
 
     public Tabuleiro() {
         super();
@@ -118,7 +119,12 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Dica",lin,col,this);
            case '?': return new Pista("Pista",r.nextInt(15), lin,col,this);
            case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
-           case '+': return new TBD("Portal","portal.png",lin,col,this);     
+           case '+': return new TBD("Portal","portal.png",lin,col,this); 
+           case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,col,this);
+                        antg = new Inimigo("Inimigo","dog3.png",lin,col,this);
+                        antg.setAnterior(anterior);
+                        return antg;
+       }    
            case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,col,this);
                         principal = new Personagem("boneco","mutley.jpg",lin,col,this);
                         principal.setAnterior(anterior);
@@ -142,6 +148,9 @@ public class Tabuleiro extends JPanel {
 
     public Personagem getPrincipal() {
         return principal;
+    }
+    public Inimigo getAntg() {
+        return antg;
     }
 }
 
