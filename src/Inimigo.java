@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class  Inimigo extends ElementoBasico {
     private ElementoBasico anterior;
 
@@ -105,6 +107,9 @@ public class  Inimigo extends ElementoBasico {
 
     @Override
     public void acao(ElementoBasico outro) {
-        throw new UnsupportedOperationException("Unimplemented method 'acao'");
+        if (outro instanceof Personagem) {
+            JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
+            System.exit(0); // Fecha o jogo
+        }
     }
-}
+    }

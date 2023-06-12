@@ -119,7 +119,7 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Dica",lin,"wall.jpg",col,this);
            case '?': return new Pista("Pista",r.nextInt(15), lin,col,this);
            case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
-           case '+': return new TBD("Portal","portal.png",lin,col,this); 
+           case '+': return new Armadilha("armadilha", lin, col, null);
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"floorcave.jpg",col,this);
                         antg = new Inimigo("Inimigo","dog3.png",lin,col,this);
                         antg.setAnterior(anterior);
