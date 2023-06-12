@@ -21,9 +21,9 @@ public class App extends JFrame implements ActionListener{
         
         JPanel botoesDirecao = new JPanel(new FlowLayout());
          
-        JButton butDir = new JButton("---->");
+        JButton butDir = new JButton("Direita");
         butDir.addActionListener(this);
-        JButton butEsq = new JButton("<----");
+        JButton butEsq = new JButton("Esquerda");
         butEsq.addActionListener(this);
         JButton butCima = new JButton("Acima");
         butCima.addActionListener(this);

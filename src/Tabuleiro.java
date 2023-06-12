@@ -154,7 +154,6 @@ public class Tabuleiro extends JPanel {
                         // Atualizar a imagem da armadilha
                         Armadilha armadilha = (Armadilha) elemento;
                         armadilha.setImage(createImageIcon("trap.png"));
-                        armadilha.play();
                     } else {
                         // Reverter para a imagem padrão da armadilha
                         Armadilha armadilha = (Armadilha) elemento;
