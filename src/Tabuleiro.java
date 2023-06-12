@@ -115,7 +115,9 @@ public class Tabuleiro extends JPanel {
     public ElementoBasico getElem(char elem, int lin, int col) {
         switch (elem) {
            case ' ': return new Fundo("Fundo",lin,"parquet.png",col,this);
+           case '=': return new Fundo("Fundo1",lin,"grass.png",col,this);
            case '-': return new Parede("Parede",lin,"wall.jpg",col,this);
+           case '~': return new Parede("Parede1",lin,"wallArv",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, null);
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
                         antg = new Inimigo("Inimigo","Pooh.png",lin,col,this);
