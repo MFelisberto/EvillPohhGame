@@ -41,7 +41,7 @@ public class App extends JFrame implements ActionListener{
         painelGeral.add(tabuleiro);
         
         // Insere os personagens no tabuleiro
-        tabuleiro.loadLevel(2);
+        tabuleiro.loadLevel(1);
         personagem = tabuleiro.getPrincipal();
         personagem.setAnterior(personagem.getAnterior());
         inimigo = tabuleiro.getAntg();
