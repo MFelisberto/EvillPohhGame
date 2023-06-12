@@ -21,15 +21,12 @@ public class App extends JFrame implements ActionListener{
         
         JPanel botoesDirecao = new JPanel(new FlowLayout());
          
-        JButton butDir = new JButton("Direita");
+        JButton butDir = new JButton("---->");
         butDir.addActionListener(this);
-       
-        JButton butEsq = new JButton("Esquerda");
+        JButton butEsq = new JButton("<----");
         butEsq.addActionListener(this);
-        
         JButton butCima = new JButton("Acima");
         butCima.addActionListener(this);
-        
         JButton butBaixo = new JButton("Abaixo");
         butBaixo.addActionListener(this);
         
@@ -37,15 +34,11 @@ public class App extends JFrame implements ActionListener{
         botoesDirecao.add(butDir);
         botoesDirecao.add(butCima);
         botoesDirecao.add(butBaixo);
-        
-
-        
-      
+              
         JPanel painelGeral = new BackgroundPanel();
         painelGeral.setLayout(new BoxLayout(painelGeral, BoxLayout.PAGE_AXIS));
         painelGeral.add(botoesDirecao);
         painelGeral.add(tabuleiro);
-        
         
         // Insere os personagens no tabuleiro
         tabuleiro.loadLevel(2);
@@ -53,6 +46,7 @@ public class App extends JFrame implements ActionListener{
         personagem.setAnterior(personagem.getAnterior());
         inimigo = tabuleiro.getAntg();
         inimigo.setAnterior(inimigo.getAnterior());
+       
         // Exibe a janela
         this.add(painelGeral);
         this.setSize(900,650);
@@ -88,8 +82,6 @@ public class App extends JFrame implements ActionListener{
         tabuleiro.atualizaVisualizacao();
     }
 
-
-    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

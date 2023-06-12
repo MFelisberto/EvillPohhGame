@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class Tabuleiro extends JPanel {
+    
     private static final int MAXLIN = 10;
     private static final int MAXCOL = 10;
     private ElementoBasico[][] celulas;
@@ -113,11 +114,9 @@ public class Tabuleiro extends JPanel {
     }
         
     public ElementoBasico getElem(char elem, int lin, int col) {
-        Random r = new Random();
         switch (elem) {
            case ' ': return new Fundo("Fundo",lin,"parquet.png",col,this);
-           case '-': return new Parede("Dica",lin,"wall.jpg",col,this);
-           case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
+           case '-': return new Parede("Parede",lin,"wall.jpg",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, null);
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
                         antg = new Inimigo("Inimigo","Pooh.png",lin,col,this);
@@ -133,18 +132,6 @@ public class Tabuleiro extends JPanel {
         }
 
     }
-     
-        // personagem = new Personagem("Feliz","icone.jpg",2,0,tabuleiro);
-        // ElementoBasico anterior = tabuleiro.insereElemento(personagem);
-        // personagem.setAnterior(anterior);
-
-        // Pista pista1 = new Pista("Pista15",15,2,4,tabuleiro);
-        // tabuleiro.insereElemento(pista1);
-        // Pista pista2 = new Pista("Pista22",22,0,2,tabuleiro);
-        // tabuleiro.insereElemento(pista2);
-        // Eca eca = new Eca("Eca2215",2215,4,2,tabuleiro);
-        // tabuleiro.insereElemento(eca);
-
     public Personagem getPrincipal() {
         return principal;
     }
