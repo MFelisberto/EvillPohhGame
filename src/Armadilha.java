@@ -2,6 +2,7 @@ import javax.swing.JOptionPane;
 
 public class Armadilha extends ElementoBasico {
     private Sounds som = Sounds.HIT;
+    
     public Armadilha(String id,String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
         super(id,iconPath, linInicial, colInicial, tabuleiro);
     }

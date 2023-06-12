@@ -5,14 +5,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public abstract class ElementoBasico extends JButton {
+    
     private Tabuleiro tabuleiro;
     private String id;
     private ImageIcon imagem;
     private int lin;
     private int col;
-
-    
-
     
     public ElementoBasico(String id,String iconPath,int linInicial,int colInicial,Tabuleiro tabuleiro){
         this.id = id;

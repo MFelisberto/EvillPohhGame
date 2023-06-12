@@ -3,7 +3,8 @@ import java.net.URL;
 import javax.sound.sampled.*;
      
 	public enum Sounds {
-	   HIT("rock.mp3"),   
+	   
+		HIT("rock.mp3"),   
 	   MISS("music/nature2.wav"),
 	   BG("music/train.wav"),
 	   CONGRATS("music/glasses.wav");

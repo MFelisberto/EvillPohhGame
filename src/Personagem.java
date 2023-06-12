@@ -1,6 +1,7 @@
 
 
 public class Personagem extends ElementoBasico {
+   
     private ElementoBasico anterior;
 
     public Personagem(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
@@ -16,7 +17,7 @@ public class Personagem extends ElementoBasico {
         return anterior;
     }
     
-    public void moveDireita() {
+    public void moveDireita() { // DIREITA
         // Remove o Personagem da posicao atual e avança
         getTabuleiro().insereElemento(anterior);
         this.incCol();
@@ -32,7 +33,7 @@ public class Personagem extends ElementoBasico {
         }
     }
 
-    public void moveEsquerda() {
+    public void moveEsquerda() { // ESQUERDA
         // Remove o Personagem da posicao atual e avança
         getTabuleiro().insereElemento(anterior);
         this.decCol();
@@ -48,7 +49,7 @@ public class Personagem extends ElementoBasico {
         }
     }
 
-    public void moveCima() {
+    public void moveCima() { // CIMA
         // Remove o Personagem da posicao atual e avança
         getTabuleiro().insereElemento(anterior);
         this.decLin();
@@ -64,7 +65,7 @@ public class Personagem extends ElementoBasico {
         }
     }
 
-    public void moveBaixo() {
+    public void moveBaixo() { // BAIXO
         // Remove o Personagem da posicao atual e avança
         getTabuleiro().insereElemento(anterior);
         this.incLin();

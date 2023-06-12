@@ -3,8 +3,8 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class  Inimigo extends ElementoBasico {
+   
     private ElementoBasico anterior;
-
     
     public Inimigo(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
         super(id, iconPath, linInicial, colInicial, tabuleiro);

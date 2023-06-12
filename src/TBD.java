@@ -2,7 +2,6 @@
 
 public class TBD extends ElementoBasico {
 
-
   public TBD(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
       super(id, iconPath, linInicial, colInicial, tabuleiro);
       this.setBorderPainted(false);
