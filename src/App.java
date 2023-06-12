@@ -50,7 +50,7 @@ public class App extends JFrame implements ActionListener{
         // Exibe a janela
         this.add(painelGeral);
         this.setSize(900,650);
-        this.setTitle("Dungeon raider");
+        this.setTitle("Evil Pooh");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
         tabuleiro.atualizaVisualizacao();
