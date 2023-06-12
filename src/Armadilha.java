@@ -1,9 +1,10 @@
 import javax.swing.JOptionPane;
 
 public class Armadilha extends ElementoBasico {
-    public Armadilha(String id, int linInicial, int colInicial, Tabuleiro tabuleiro) {
-        super(id, "portal.png", linInicial, colInicial, tabuleiro);
+    public Armadilha(String id,String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
+        super(id,iconPath, linInicial, colInicial, tabuleiro);
     }
+    
 
     @Override
     public void acao(ElementoBasico outro) {

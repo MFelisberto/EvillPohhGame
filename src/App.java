@@ -68,18 +68,22 @@ public class App extends JFrame implements ActionListener{
         if (but.getText().equals("Direita")){
             personagem.moveDireita();
             inimigo.moveAleat();
+            tabuleiro.verificarArmadilha(personagem);
         }
         if (but.getText().equals("Esquerda")){
             personagem.moveEsquerda();
             inimigo.moveAleat();
+            tabuleiro.verificarArmadilha(personagem);
         }
         if (but.getText().equals("Acima")){
             personagem.moveCima();
             inimigo.moveAleat();
+            tabuleiro.verificarArmadilha(personagem);
         }
         if (but.getText().equals("Abaixo")){
             personagem.moveBaixo();
             inimigo.moveAleat();
+            tabuleiro.verificarArmadilha(personagem);
         }
         tabuleiro.atualizaVisualizacao();
     }

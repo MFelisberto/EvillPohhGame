@@ -119,7 +119,7 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Dica",lin,"wall.jpg",col,this);
            case '?': return new Pista("Pista",r.nextInt(15), lin,col,this);
            case '^': return new TBD("Buraco","hole.jpg",lin,col,this);
-           case '+': return new Armadilha("armadilha", lin, col, null);
+           case '+': return new Armadilha("armadilha","floorcave.jpg", lin, col, null);
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"floorcave.jpg",col,this);
                         antg = new Inimigo("Inimigo","dog3.png",lin,col,this);
                         antg.setAnterior(anterior);
@@ -152,5 +152,31 @@ public class Tabuleiro extends JPanel {
     public Inimigo getAntg() {
         return antg;
     }
+    public void verificarArmadilha(Personagem personagem) {
+        int linPersonagem = personagem.getLin();
+        int colPersonagem = personagem.getCol();
+
+        for (int lin = 0; lin < MAXLIN; lin++) {
+            for (int col = 0; col < MAXCOL; col++) {
+                ElementoBasico elemento = celulas[lin][col];
+                if (elemento instanceof Armadilha) {
+                    int linArmadilha = elemento.getLin();
+                    int colArmadilha = elemento.getCol();
+
+                    int distancia = Math.abs(linPersonagem - linArmadilha) + Math.abs(colPersonagem - colArmadilha);
+                    if (distancia <= 1) {
+                        // Atualizar a imagem da armadilha
+                        Armadilha armadilha = (Armadilha) elemento;
+                        armadilha.setImage(createImageIcon("portal.png"));
+                    } else {
+                        // Reverter para a imagem padrão da armadilha
+                        Armadilha armadilha = (Armadilha) elemento;
+                        armadilha.setImage(createImageIcon("floorcave.jpg"));
+                    }
+                }
+            }
+        }
+    }
 }
+
 
