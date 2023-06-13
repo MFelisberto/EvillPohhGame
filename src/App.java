@@ -8,16 +8,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class App extends JFrame implements ActionListener{
     
     private Tabuleiro tabuleiro;
     private Personagem personagem;
     private Inimigo inimigo;
+   
+    private Porta porta;
+    
 
-    public App() {
+    public App(String niv) {
         super();
         // Define os componentes da tela
         tabuleiro = new Tabuleiro();
+        
+        
         
         JPanel botoesDirecao = new JPanel(new FlowLayout());
          
@@ -35,17 +41,19 @@ public class App extends JFrame implements ActionListener{
         botoesDirecao.add(butCima);
         botoesDirecao.add(butBaixo);
               
-        JPanel painelGeral = new BackgroundPanel();
+        JPanel painelGeral = new JPanel();
         painelGeral.setLayout(new BoxLayout(painelGeral, BoxLayout.PAGE_AXIS));
         painelGeral.add(botoesDirecao);
         painelGeral.add(tabuleiro);
         
         // Insere os personagens no tabuleiro
-        tabuleiro.loadLevel(2);
+        tabuleiro.loadLevel(niv);
         personagem = tabuleiro.getPrincipal();
         personagem.setAnterior(personagem.getAnterior());
         inimigo = tabuleiro.getAntg();
         inimigo.setAnterior(inimigo.getAnterior());
+        porta = tabuleiro.getPort();
+        porta.setAnterior(porta.getAnterior());
        
         // Exibe a janela
         this.add(painelGeral);
@@ -63,21 +71,36 @@ public class App extends JFrame implements ActionListener{
             personagem.moveDireita();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            if (porta.verificarColisao(personagem)) {
+                this.dispose(); // Fecha a janela atual
+            }
         }
         if (but.getText().equals("Esquerda")){
             personagem.moveEsquerda();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            if (porta.verificarColisao(personagem)) {
+                this.dispose(); // Fecha a janela atual
+                
+            }
         }
         if (but.getText().equals("Acima")){
             personagem.moveCima();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            if (porta.verificarColisao(personagem)) {
+                this.dispose(); // Fecha a janela atual
+                 // Encerra o método actionPerformed para evitar execuções adicionais desnecessárias
+            }
         }
         if (but.getText().equals("Abaixo")){
             personagem.moveBaixo();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            if (porta.verificarColisao(personagem)) {
+                this.dispose(); // Fecha a janela atual
+                 // Encerra o método actionPerformed para evitar execuções adicionais desnecessárias
+            }
         }
         tabuleiro.atualizaVisualizacao();
     }
@@ -86,24 +109,9 @@ public class App extends JFrame implements ActionListener{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new App();
+                new App("nivel1.txt");
             }
         });
     }
-    private static class BackgroundPanel extends JPanel {
-        private Image backgroundImage;
-
-        public BackgroundPanel() {
-            // Carrega a imagem de fundo
-            this.backgroundImage = new ImageIcon("./wall.png").getImage();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-
-            // Desenha a imagem de fundo
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-        }
+    
     }
-}

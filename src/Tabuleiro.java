@@ -12,12 +12,19 @@ public class Tabuleiro extends JPanel {
     private static final int MAXLIN = 10;
     private static final int MAXCOL = 10;
     private ElementoBasico[][] celulas;
+    private Nivel niveis;
 
+
+    private Porta port;
     private Personagem principal;
     private Inimigo antg;
 
     public Tabuleiro() {
         super();
+        niveis = new Nivel();
+        
+        niveis.adicione("nivel1.txt");
+        niveis.adicione("nivel2.txt");
         // Cria o conjunto de células vazia e as insere no layout
         celulas = new ElementoBasico[MAXLIN][MAXCOL];
         this.setLayout(new GridLayout(MAXLIN, MAXCOL));
@@ -48,6 +55,9 @@ public class Tabuleiro extends JPanel {
 
     public static int getMaxcol() {
         return MAXCOL;
+    }
+    public Nivel getNiveis() {
+        return niveis;
     }
 
     public boolean posicaoValida(int lin, int col) {
@@ -90,8 +100,8 @@ public class Tabuleiro extends JPanel {
         }
     }
     
-    public void loadLevel(int nivel) {
-        Path path1 = Paths.get(String.format("nivel%d.txt", nivel));
+    public void loadLevel(String nivel) {
+        Path path1 = Paths.get(nivel);
         try (BufferedReader reader = Files.newBufferedReader(path1)) {
             String line = null;
             int lin = 0;
@@ -119,6 +129,10 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Parede",lin,"wall.png",col,this);
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, null);
+           case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
+                        port =new Porta("porta", "door.png", lin, col, null, niveis);
+                         port.setAnterior(anterior);
+                         return port;}
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
                         antg = new Inimigo("Inimigo","Pooh.png",lin,col,this);
                         antg.setAnterior(anterior);
@@ -139,6 +153,10 @@ public class Tabuleiro extends JPanel {
     public Inimigo getAntg() {
         return antg;
     }
+    public Porta getPort() {
+        return port;
+    }
+
     public void verificarArmadilha(Personagem personagem) {
         int linPersonagem = personagem.getLin();
         int colPersonagem = personagem.getCol();
@@ -164,6 +182,7 @@ public class Tabuleiro extends JPanel {
             }
         }
     }
+    
 }
 
 
