@@ -108,7 +108,7 @@ public class  Inimigo extends ElementoBasico {
 
     @Override
     public void acao(ElementoBasico outro) {
-        ImageIcon dead = new ImageIcon("imagens/dead.png");
+        ImageIcon dead = new ImageIcon("dead.png");
         if (outro instanceof Personagem) {
             if (this.getLin() == outro.getLin() && this.getCol() == outro.getCol()) {
                 Personagem per = (Personagem) outro;

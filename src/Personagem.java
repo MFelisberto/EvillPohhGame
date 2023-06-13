@@ -84,7 +84,7 @@ public class Personagem extends ElementoBasico {
 
     @Override
 public void acao(ElementoBasico outro) {
-    ImageIcon dead = new ImageIcon("imagens/dead.png");
+    ImageIcon dead = new ImageIcon("dead.png");
     if (outro instanceof Inimigo) {
         this.setImage(dead);
         getTabuleiro().insereElemento(this);
