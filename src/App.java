@@ -95,7 +95,7 @@ public class App extends JFrame implements ActionListener{
 
         public BackgroundPanel() {
             // Carrega a imagem de fundo
-            this.backgroundImage = new ImageIcon("./wall.jpg").getImage();
+            this.backgroundImage = new ImageIcon("./wall.png").getImage();
         }
 
         @Override

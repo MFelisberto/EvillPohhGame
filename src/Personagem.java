@@ -1,4 +1,5 @@
-
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Personagem extends ElementoBasico {
    
@@ -82,9 +83,15 @@ public class Personagem extends ElementoBasico {
     }
 
     @Override
-    public void acao(ElementoBasico outro) {
-        throw new UnsupportedOperationException("Unimplemented method 'acao'");
+public void acao(ElementoBasico outro) {
+    ImageIcon dead = new ImageIcon("imagens/dead.png");
+    if (outro instanceof Inimigo) {
+        this.setImage(dead);
+        getTabuleiro().insereElemento(this);
+        JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
+        System.exit(0); // Fecha o jogo
     }
+}
 
    
 }
