@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 
 public class Tabuleiro extends JPanel {
     
-    private static final int MAXLIN = 10;
-    private static final int MAXCOL = 10;
+    private static final int MAXLIN = 14;
+    private static final int MAXCOL = 14;
     private ElementoBasico[][] celulas;
     private Nivel niveis;
     private App app;
