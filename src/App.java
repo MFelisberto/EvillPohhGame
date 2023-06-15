@@ -1,5 +1,4 @@
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,13 +14,15 @@ public class App extends JFrame implements ActionListener{
     private Personagem personagem;
     private Inimigo inimigo;
    
+   
     private Porta porta;
     
 
     public App(String niv) {
         super();
         // Define os componentes da tela
-        tabuleiro = new Tabuleiro();
+        tabuleiro = new Tabuleiro(this);
+        
         
         
         

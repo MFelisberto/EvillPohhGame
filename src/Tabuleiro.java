@@ -13,15 +13,18 @@ public class Tabuleiro extends JPanel {
     private static final int MAXCOL = 10;
     private ElementoBasico[][] celulas;
     private Nivel niveis;
+    private App app;
 
 
     private Porta port;
     private Personagem principal;
     private Inimigo antg;
 
-    public Tabuleiro() {
+    public Tabuleiro(App app) {
         super();
+        this.app= app;
         niveis = new Nivel();
+        
         
         niveis.adicione("nivel1.txt");
         niveis.adicione("nivel2.txt");
@@ -130,7 +133,7 @@ public class Tabuleiro extends JPanel {
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, null);
            case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
-                        port =new Porta("porta", "door.png", lin, col, null, niveis);
+                        port =new Porta("porta", "door.png", lin, col, null, niveis,app);
                          port.setAnterior(anterior);
                          return port;}
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
@@ -160,8 +163,11 @@ public class Tabuleiro extends JPanel {
     public void verificarArmadilha(Personagem personagem) {
         int linPersonagem = personagem.getLin();
         int colPersonagem = personagem.getCol();
+        SoundPlayer soundPlayer = new SoundPlayer();
+        
 
         for (int lin = 0; lin < MAXLIN; lin++) {
+           
             for (int col = 0; col < MAXCOL; col++) {
                 ElementoBasico elemento = celulas[lin][col];
                 if (elemento instanceof Armadilha) {
@@ -176,13 +182,19 @@ public class Tabuleiro extends JPanel {
                     } else {
                         // Reverter para a imagem padrão da armadilha
                         Armadilha armadilha = (Armadilha) elemento;
-                        armadilha.setImage(createImageIcon("parquet.png"));
+                        armadilha.setImage(createImageIcon("parquet.png"));}
+                        if (distancia == 2) {
+                            soundPlayer.playSound("rock.wav");
+                            soundPlayer.stopSound();
+                           
+                             
+                        }}}}
+                       
+                    
                     }
-                }
-            }
-        }
-    }
+                   
     
 }
+
 
 
