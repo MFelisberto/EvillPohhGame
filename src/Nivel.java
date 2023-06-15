@@ -27,7 +27,9 @@ public class Nivel {
 
     public void avancarProximaPosicao() {
         currentIndex++;
-       
+        if (currentIndex >= contents.size()) {
+            currentIndex = 0; // Volta para o primeiro nível
+        }
+    }
     }
     
-}

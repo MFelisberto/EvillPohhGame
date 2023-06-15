@@ -28,6 +28,9 @@ public class Tabuleiro extends JPanel {
         
         niveis.adicione("nivel1.txt");
         niveis.adicione("nivel2.txt");
+        niveis.adicione("nivel3.txt");
+        
+       
         // Cria o conjunto de células vazia e as insere no layout
         celulas = new ElementoBasico[MAXLIN][MAXCOL];
         this.setLayout(new GridLayout(MAXLIN, MAXCOL));

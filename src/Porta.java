@@ -34,7 +34,6 @@ public class Porta extends ElementoBasico {
         return false;
     }
 
-    @Override
     public void acao(ElementoBasico outro) {
         if (outro instanceof Personagem && nivel != null) {
             Personagem personagem = (Personagem) outro;
@@ -54,9 +53,11 @@ public class Porta extends ElementoBasico {
             }
         }
     }
-
+    
     public String carregarProximoNivel() {
         nivel.avancarProximaPosicao();
-        return nivel.getCurrentContent();
+        String proximoNivel = nivel.getCurrentContent();
+        nivel.avancarProximaPosicao(); // Adicione esta linha para avançar para o próximo nível
+        return proximoNivel;
     }
 }
