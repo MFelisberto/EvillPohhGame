@@ -18,10 +18,10 @@ public class App extends JFrame implements ActionListener{
     private Porta porta;
     
 
-    public App(String niv) {
+    public App(String niv,String nivelAt) {
         super();
         // Define os componentes da tela
-        tabuleiro = new Tabuleiro(this);
+        tabuleiro = new Tabuleiro(this,nivelAt);
         
         
         
@@ -110,7 +110,7 @@ public class App extends JFrame implements ActionListener{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new App("nivel1.txt");
+                new App("nivel1.txt","nivel1.txt");
             }
         });
     }

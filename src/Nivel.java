@@ -24,6 +24,15 @@ public class Nivel {
         }
         return contents.get(0); // Retorna o primeiro arquivo da lista
     }
+    public String proximoElemento(String elemento) {
+        int index = contents.indexOf(elemento);
+        if (index != -1) {
+            int proximoIndex = (index + 1) % contents.size();
+            return contents.get(proximoIndex);
+        }
+        return null; // Elemento não encontrado
+    }
+
 
     public void avancarProximaPosicao() {
         currentIndex++;
@@ -31,5 +40,5 @@ public class Nivel {
             currentIndex = 0; // Volta para o primeiro nível
         }
     }
-    }
+}
     

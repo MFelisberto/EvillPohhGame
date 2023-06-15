@@ -4,11 +4,13 @@ public class Porta extends ElementoBasico {
     private Nivel nivel;
     private ElementoBasico anterior;
     private App app;
+    private String nivelAt;
 
-    public Porta(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro, Nivel nivel, App app) {
+    public Porta(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro, Nivel nivel, App app,String nivelAt) {
         super(id, iconPath, linInicial, colInicial, tabuleiro);
         this.nivel = nivel;
         this.app = app;
+        this.nivelAt = nivelAt;
     }
 
     public void setNivel(Nivel nivel) {
@@ -37,14 +39,15 @@ public class Porta extends ElementoBasico {
     public void acao(ElementoBasico outro) {
         if (outro instanceof Personagem && nivel != null) {
             Personagem personagem = (Personagem) outro;
+            String proximoNivel = carregarProximoNivel();
             if (verificarColisao(personagem)) {
-                String proximoNivel = carregarProximoNivel();
+                
                 if (proximoNivel != null) {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
                             app.dispose(); // Fechar a janela atual antes de abrir uma nova
-                            new App(proximoNivel); // Carregar um novo App com o próximo nível
+                            new App(proximoNivel,proximoNivel); // Carregar um novo App com o próximo nível
                         }
                     });
                 } else {
@@ -55,9 +58,7 @@ public class Porta extends ElementoBasico {
     }
     
     public String carregarProximoNivel() {
-        nivel.avancarProximaPosicao();
-        String proximoNivel = nivel.getCurrentContent();
-        nivel.avancarProximaPosicao(); // Adicione esta linha para avançar para o próximo nível
+        String proximoNivel = nivel.proximoElemento(nivelAt);
         return proximoNivel;
     }
 }

@@ -15,14 +15,15 @@ public class Tabuleiro extends JPanel {
     private Nivel niveis;
     private App app;
 
-
+    private String nivelAt;
     private Porta port;
     private Personagem principal;
     private Inimigo antg;
 
-    public Tabuleiro(App app) {
+    public Tabuleiro(App app,String nivelAt) {
         super();
         this.app= app;
+        this.nivelAt = nivelAt;
         niveis = new Nivel();
         
         
@@ -136,7 +137,7 @@ public class Tabuleiro extends JPanel {
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, null);
            case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
-                        port =new Porta("porta", "door.png", lin, col, null, niveis,app);
+                        port =new Porta("porta", "door.png", lin, col, null, niveis,app,nivelAt);
                          port.setAnterior(anterior);
                          return port;}
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
