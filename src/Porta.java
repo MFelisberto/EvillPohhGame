@@ -46,6 +46,7 @@ public class Porta extends ElementoBasico {
                     case "g":
                     case "i":
                     case "l":
+                    case "c":
                         String proximoNivel = carregarProximoNivel();
                         if (proximoNivel != null) {
                             SwingUtilities.invokeLater(new Runnable() {

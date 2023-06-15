@@ -227,17 +227,22 @@ public class Tabuleiro extends JPanel {
                     if (distancia <= 1) {
                         // Atualizar a imagem d
                         Prisioner prisioneiro = (Prisioner) elemento;
-                        prisioneiro.setImage(createImageIcon("trap.png"));
+                        prisioneiro.setImage(createImageIcon("dead.png"));
                     } else {
                         // Reverter para a imagem padrão 
                         Prisioner prisioneiro = (Prisioner) elemento;
+                        if(prisioneiro.getCod().equals("g")||prisioneiro.getCod().equals("l")||prisioneiro.getCod().equals("i")){
                         prisioneiro.setImage(createImageIcon("wall.png"));
                         if (distancia == 2) {
                             soundPlayer.playSound("die.wav");
                             soundPlayer.stopSound();
                            
-                             
-                        }}}}
+                        }}else prisioneiro.setImage(createImageIcon("wallArv.png"));
+                        if (distancia == 2) {
+                            soundPlayer.playSound("die.wav");
+                            soundPlayer.stopSound();
+                        }
+                    }}
                        
                     
                     }
@@ -246,6 +251,6 @@ public class Tabuleiro extends JPanel {
     
 }
 }
-
+}
 
 

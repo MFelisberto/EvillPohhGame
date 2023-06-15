@@ -30,6 +30,10 @@ public class Prisioner extends ElementoBasico {
             Parede parede = new Parede("Parede", lin, "wall.png", col, getTabuleiro());
             getTabuleiro().insereElemento(parede);
             getTabuleiro().removeElemento(this); 
+            if(this.getCod() == "c"){
+            Parede paredeC = new Parede("Parede", lin, "wallArv.png", col, getTabuleiro());
+            getTabuleiro().insereElemento(paredeC);
+            getTabuleiro().removeElemento(this); }
         }
     }
 

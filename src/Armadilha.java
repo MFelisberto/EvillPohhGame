@@ -8,8 +8,11 @@ public class Armadilha extends ElementoBasico {
     
     @Override
     public void acao(ElementoBasico outro) {
+        SoundPlayer soundPlayer = new SoundPlayer();
         if (outro instanceof Personagem) {
             JOptionPane.showMessageDialog(null, "Você morreu!");
+            soundPlayer.playSound("die.wav");
+            soundPlayer.stopSound();
             System.exit(0); // Fecha o jogo
         }
     }
