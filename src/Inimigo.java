@@ -17,6 +17,7 @@ public class  Inimigo extends ElementoBasico {
         return anterior;
     }
     
+    
     public void moveDireita() {
         // Remove o Personagem da posicao atual e avança
         getTabuleiro().insereElemento(anterior);
@@ -105,17 +106,28 @@ public class  Inimigo extends ElementoBasico {
 
 
     }
+    public static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = App.class.getResource("imagens/"+path);
+        
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            System.exit(0);
+            return null;
+        }
+    }
 
     @Override
     public void acao(ElementoBasico outro) {
         SoundPlayer soundPlayer = new SoundPlayer();
-        ImageIcon dead = new ImageIcon("dead.png");
+       
         
         if (outro instanceof Personagem) {
             if (this.getLin() == outro.getLin() && this.getCol() == outro.getCol()) {
                 Personagem per = (Personagem) outro;
         
-                per.setImage(dead);
+                per.setImage(createImageIcon("wall.png"));
                 getTabuleiro().insereElemento(per);
                 soundPlayer.playSound("die.wav");
                 soundPlayer.stopSound();
@@ -131,7 +143,7 @@ public class  Inimigo extends ElementoBasico {
             }
             
             Personagem per = (Personagem) outro;
-                per.setImage(dead);
+                per.setImage(createImageIcon("wall.png"));
                 getTabuleiro().insereElemento(per);
                 soundPlayer.playSound("die.wav");
                 soundPlayer.stopSound();

@@ -72,6 +72,7 @@ public class App extends JFrame implements ActionListener{
             personagem.moveDireita();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
                 this.dispose(); // Fecha a janela atual
             }
@@ -80,6 +81,7 @@ public class App extends JFrame implements ActionListener{
             personagem.moveEsquerda();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
                 this.dispose(); // Fecha a janela atual
                 
@@ -89,6 +91,7 @@ public class App extends JFrame implements ActionListener{
             personagem.moveCima();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
                 this.dispose(); // Fecha a janela atual
                  // Encerra o método actionPerformed para evitar execuções adicionais desnecessárias
@@ -98,6 +101,7 @@ public class App extends JFrame implements ActionListener{
             personagem.moveBaixo();
             inimigo.moveAleat();
             tabuleiro.verificarArmadilha(personagem);
+            tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
                 this.dispose(); // Fecha a janela atual
                  // Encerra o método actionPerformed para evitar execuções adicionais desnecessárias

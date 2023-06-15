@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class Porta extends ElementoBasico {
@@ -36,22 +37,32 @@ public class Porta extends ElementoBasico {
         return false;
     }
 
+    @Override
     public void acao(ElementoBasico outro) {
         if (outro instanceof Personagem && nivel != null) {
             Personagem personagem = (Personagem) outro;
-            String proximoNivel = carregarProximoNivel();
             if (verificarColisao(personagem)) {
-                
-                if (proximoNivel != null) {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            app.dispose(); // Fechar a janela atual antes de abrir uma nova
-                            new App(proximoNivel,proximoNivel); // Carregar um novo App com o próximo nível
+                switch (personagem.getPri()) {
+                    case "g":
+                    case "i":
+                    case "l":
+                        String proximoNivel = carregarProximoNivel();
+                        if (proximoNivel != null) {
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    app.dispose(); // Fechar a janela atual antes de abrir uma nova
+                                    new App(proximoNivel, proximoNivel); // Carregar um novo App com o próximo nível
+                                }
+                            });
+                        } else {
+                            System.out.println("Não há mais níveis disponíveis!");
                         }
-                    });
-                } else {
-                    System.out.println("Não há mais níveis disponíveis!");
+                        break;
+                    default:
+                        // Caso em que o código do prisioneiro não corresponde a nenhum dos casos permitidos
+                        JOptionPane.showMessageDialog(null, "Prisioneiro ainda não foi resgatado");
+                        break;
                 }
             }
         }

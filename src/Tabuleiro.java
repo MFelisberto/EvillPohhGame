@@ -135,9 +135,12 @@ public class Tabuleiro extends JPanel {
            case '=': return new Fundo("Fundo1",lin,"grass.png",col,this);
            case '-': return new Parede("Parede",lin,"wall.png",col,this);
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
-           case '+': return new Armadilha("armadilha","parquet.png", lin, col, null);
+           case '+': return new Armadilha("armadilha","parquet.png", lin, col, this);
+           case 'g': return new Prisioner("Guru","wall.png", lin, col, this,"g");
+           case 'i': return new Prisioner("Io","parquet.png", lin, col, this,"i");
+           case 'l': return new Prisioner("Leitão","parquet.png", lin, col, this,"l");
            case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
-                        port =new Porta("porta", "door.png", lin, col, null, niveis,app,nivelAt);
+                        port =new Porta("porta", "door.png", lin, col, this, niveis,app,nivelAt);
                          port.setAnterior(anterior);
                          return port;}
            case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
@@ -146,7 +149,7 @@ public class Tabuleiro extends JPanel {
                         return antg;
        }    
            case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
-                        principal = new Personagem("boneco","Personagem.png",lin,col,this);
+                        principal = new Personagem("boneco","Personagem.png",lin,col,this,"p");
                         principal.setAnterior(anterior);
                         return principal;
                     }
@@ -195,9 +198,44 @@ public class Tabuleiro extends JPanel {
                         }}}}
                        
                     
+    }
+    
+    public void verificarPrisioneiro(Personagem personagem) {
+        int linPersonagem = personagem.getLin();
+        int colPersonagem = personagem.getCol();
+        SoundPlayer soundPlayer = new SoundPlayer();
+        
+
+        for (int lin = 0; lin < MAXLIN; lin++) {
+           
+            for (int col = 0; col < MAXCOL; col++) {
+                ElementoBasico elemento = celulas[lin][col];
+                if (elemento instanceof Armadilha) {
+                    int linArmadilha = elemento.getLin();
+                    int colArmadilha = elemento.getCol();
+
+                    int distancia = Math.abs(linPersonagem - linArmadilha) + Math.abs(colPersonagem - colArmadilha);
+                    if (distancia <= 1) {
+                        // Atualizar a imagem d
+                        Prisioner prisioneiro = (Prisioner) elemento;
+                        prisioneiro.setImage(createImageIcon("trap.png"));
+                    } else {
+                        // Reverter para a imagem padrão 
+                        Prisioner prisioneiro = (Prisioner) elemento;
+                        prisioneiro.setImage(createImageIcon("wall.png"));
+                        if (distancia == 2) {
+                            soundPlayer.playSound("die.wav");
+                            soundPlayer.stopSound();
+                           
+                             
+                        }}}}
+                       
+                    
                     }
+                    
                    
     
+}
 }
 
 

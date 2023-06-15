@@ -8,6 +8,10 @@ public class Prisioner extends ElementoBasico {
         
     }
 
+    public String getCod() {
+        return cod;
+    }
+
     public void setAnterior(ElementoBasico anterior){
         this.anterior = anterior;
     }

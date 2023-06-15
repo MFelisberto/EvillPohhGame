@@ -2,12 +2,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Personagem extends ElementoBasico {
-   
+
+    private String pri;
     private ElementoBasico anterior;
 
-    public Personagem(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro) {
+    public Personagem(String id, String iconPath, int linInicial, int colInicial, Tabuleiro tabuleiro,String pri) {
         super(id, iconPath, linInicial, colInicial, tabuleiro);
+        this.pri = pri;
         
+        
+    }
+
+    public String getPri() {
+        return pri;
     }
 
     public void setAnterior(ElementoBasico anterior){
@@ -16,6 +23,18 @@ public class Personagem extends ElementoBasico {
 
     public ElementoBasico getAnterior() {
         return anterior;
+    }
+
+    public static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = App.class.getResource("imagens/"+path);
+        
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            System.exit(0);
+            return null;
+        }
     }
     
     public void moveDireita() { // DIREITA
@@ -84,9 +103,8 @@ public class Personagem extends ElementoBasico {
 
     @Override
 public void acao(ElementoBasico outro) {
-    ImageIcon dead = new ImageIcon("dead.png");
     if (outro instanceof Inimigo) {
-        this.setImage(dead);
+        this.setImage(createImageIcon("wall.png"));
         getTabuleiro().insereElemento(this);
         JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
         try {
@@ -96,6 +114,9 @@ public void acao(ElementoBasico outro) {
         }
 
         System.exit(0);; // Fecha o jogo
+    }else if (outro instanceof Prisioner) {
+        Prisioner prisioner = (Prisioner) outro;
+        this.pri = prisioner.getCod(); // Define o código do prisioneiro como o valor de "pri" do personagem
     }
 }
 
