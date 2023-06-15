@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Nivel {
@@ -12,6 +13,7 @@ public class Nivel {
     }
     public void adicione(String nomeArquivo) {
         contents.add(nomeArquivo);
+        Collections.sort(contents);
      
     }
 

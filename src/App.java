@@ -70,7 +70,7 @@ public class App extends JFrame implements ActionListener{
         JButton but = (JButton)arg0.getSource();
         if (but.getText().equals("Direita")){
             personagem.moveDireita();
-            inimigo.moveAleat();
+            inimigo.movePerseguir(personagem);
             tabuleiro.verificarArmadilha(personagem);
             tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
@@ -79,7 +79,7 @@ public class App extends JFrame implements ActionListener{
         }
         if (but.getText().equals("Esquerda")){
             personagem.moveEsquerda();
-            inimigo.moveAleat();
+            inimigo.movePerseguir(personagem);
             tabuleiro.verificarArmadilha(personagem);
             tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
@@ -89,7 +89,7 @@ public class App extends JFrame implements ActionListener{
         }
         if (but.getText().equals("Acima")){
             personagem.moveCima();
-            inimigo.moveAleat();
+            inimigo.movePerseguir(personagem);
             tabuleiro.verificarArmadilha(personagem);
             tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {
@@ -99,7 +99,7 @@ public class App extends JFrame implements ActionListener{
         }
         if (but.getText().equals("Abaixo")){
             personagem.moveBaixo();
-            inimigo.moveAleat();
+            inimigo.movePerseguir(personagem);
             tabuleiro.verificarArmadilha(personagem);
             tabuleiro.verificarPrisioneiro(personagem);
             if (porta.verificarColisao(personagem)) {

@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 
 public class Tabuleiro extends JPanel {
     
-    private static final int MAXLIN = 14;
-    private static final int MAXCOL = 14;
+    private static final int MAXLIN = 13;
+    private static final int MAXCOL = 20;
     private ElementoBasico[][] celulas;
     private Nivel niveis;
     private App app;
@@ -55,6 +55,7 @@ public class Tabuleiro extends JPanel {
             return null;
         }
     }
+    
 
     public static int getMaxlin() {
         return MAXLIN;
@@ -82,6 +83,13 @@ public class Tabuleiro extends JPanel {
             return null;
         }
         return celulas[lin][col];
+    }
+    public void removeElemento(ElementoBasico elemento) {
+        int lin = elemento.getLin();
+        int col = elemento.getCol();
+        if (posicaoValida(lin, col) && celulas[lin][col] == elemento) {
+            celulas[lin][col] = new Fundo("Fundo[" + lin + "][" + col + "]", lin, "wall.png", col, this);
+        }
     }
 
     public ElementoBasico insereElemento(ElementoBasico elemento) {
@@ -139,16 +147,17 @@ public class Tabuleiro extends JPanel {
            case 'g': return new Prisioner("Guru","wall.png", lin, col, this,"g");
            case 'i': return new Prisioner("Io","parquet.png", lin, col, this,"i");
            case 'l': return new Prisioner("Leitão","parquet.png", lin, col, this,"l");
-           case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
+           case 'c': return new Prisioner("Chave","parquet.png", lin, col, this,"l");
+           case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         port =new Porta("porta", "door.png", lin, col, this, niveis,app,nivelAt);
                          port.setAnterior(anterior);
                          return port;}
-           case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
+           case 'x':{  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         antg = new Inimigo("Inimigo","Pooh.png",lin,col,this);
                         antg.setAnterior(anterior);
                         return antg;
        }    
-           case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,this);
+           case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         principal = new Personagem("boneco","Personagem.png",lin,col,this,"p");
                         principal.setAnterior(anterior);
                         return principal;
@@ -210,11 +219,11 @@ public class Tabuleiro extends JPanel {
            
             for (int col = 0; col < MAXCOL; col++) {
                 ElementoBasico elemento = celulas[lin][col];
-                if (elemento instanceof Armadilha) {
-                    int linArmadilha = elemento.getLin();
-                    int colArmadilha = elemento.getCol();
+                if (elemento instanceof Prisioner) {
+                    int linP = elemento.getLin();
+                    int colP = elemento.getCol();
 
-                    int distancia = Math.abs(linPersonagem - linArmadilha) + Math.abs(colPersonagem - colArmadilha);
+                    int distancia = Math.abs(linPersonagem - linP) + Math.abs(colPersonagem - colP);
                     if (distancia <= 1) {
                         // Atualizar a imagem d
                         Prisioner prisioneiro = (Prisioner) elemento;

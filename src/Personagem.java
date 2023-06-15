@@ -101,11 +101,24 @@ public class Personagem extends ElementoBasico {
         }
     }
 
+    public void setPri(String pri) {
+        this.pri = pri;
+    }
+
     @Override
 public void acao(ElementoBasico outro) {
+    SoundPlayer soundPlayer = new SoundPlayer();
+    
     if (outro instanceof Inimigo) {
-        this.setImage(createImageIcon("wall.png"));
+        this.setImage(createImageIcon("dead.png"));
         getTabuleiro().insereElemento(this);
+        soundPlayer.playSound("die.wav");
+                soundPlayer.stopSound();
+                try {
+                    Thread.sleep(1); // Espera para poder dar o som 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
         JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
         try {
             Thread.sleep(1); // Espera para poder dar o som 
@@ -117,6 +130,14 @@ public void acao(ElementoBasico outro) {
     }else if (outro instanceof Prisioner) {
         Prisioner prisioner = (Prisioner) outro;
         this.pri = prisioner.getCod(); // Define o código do prisioneiro como o valor de "pri" do personagem
+
+        // Substituir o prisioneiro por uma parede
+        int lin = prisioner.getLin();
+        int col = prisioner.getCol();
+        Parede parede = new Parede("Parede", lin, "wall.png", col, getTabuleiro());
+        getTabuleiro().insereElemento(parede);
+        getTabuleiro().removeElemento(prisioner); 
+        
     }
 }
 

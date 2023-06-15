@@ -42,10 +42,10 @@ public class Porta extends ElementoBasico {
         if (outro instanceof Personagem && nivel != null) {
             Personagem personagem = (Personagem) outro;
             if (verificarColisao(personagem)) {
-                //switch (personagem.getPri()) {
-                   // case "g":
-                   // case "i":
-                   // case "l":
+                switch (personagem.getPri()) {
+                    case "g":
+                    case "i":
+                    case "l":
                         String proximoNivel = carregarProximoNivel();
                         if (proximoNivel != null) {
                             SwingUtilities.invokeLater(new Runnable() {
@@ -55,14 +55,14 @@ public class Porta extends ElementoBasico {
                                     new App(proximoNivel, proximoNivel); // Carregar um novo App com o próximo nível
                                 }
                             });
-                        //} else {
+                        } else {
                             System.out.println("Não há mais níveis disponíveis!");
-                       // }
-                       // break;
-                    //default:
+                        }
+                        break;
+                    default:
                         // Caso em que o código do prisioneiro não corresponde a nenhum dos casos permitidos
-                        //JOptionPane.showMessageDialog(null, "Prisioneiro ainda não foi resgatado");
-                       // break;
+                        JOptionPane.showMessageDialog(null, "Prisioneiro ainda não foi resgatado");
+                        break;
                 }
             }
         }

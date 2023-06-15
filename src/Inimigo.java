@@ -1,5 +1,4 @@
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -81,6 +80,43 @@ public class  Inimigo extends ElementoBasico {
             this.anterior = getTabuleiro().insereElemento(this);
         }
     }
+
+    public void movePerseguir(Personagem personagem) {
+        int distLin = Math.abs(personagem.getLin() - this.getLin());
+        int distCol = Math.abs(personagem.getCol() - this.getCol());
+    
+        if (distLin <= 4 && distCol <= 4 && (distLin == 0 || distCol == 0)) {
+            // Remove o inimigo da posição atual e avança em direção ao personagem
+            getTabuleiro().insereElemento(anterior);
+    
+            if (distLin == 0) {
+                if (personagem.getCol() < this.getCol()) {
+                    this.decCol();
+                } else if (personagem.getCol() > this.getCol()) {
+                    this.incCol();
+                }
+            } else if (distCol == 0) {
+                if (personagem.getLin() < this.getLin()) {
+                    this.decLin();
+                } else if (personagem.getLin() > this.getLin()) {
+                    this.incLin();
+                }
+            }
+    
+            // Verifica se tem algum elemento de interesse na nova posição e interage de acordo
+            ElementoBasico elemento = getTabuleiro().getElementoNaPosicao(this.getLin(), this.getCol());
+            if (!(elemento instanceof Fundo)) {
+                elemento.acao(this);
+                this.anterior = getTabuleiro().insereElemento(this);
+            } else {
+                this.anterior = getTabuleiro().insereElemento(this);
+            }
+        } else {
+            // Se o personagem estiver longe demais, move-se aleatoriamente
+            moveAleat();
+        }
+    }
+
     public void moveAleat(){
         int min = 0; 
         int max = 3; 
