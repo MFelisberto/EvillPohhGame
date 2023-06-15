@@ -127,7 +127,7 @@ public class  Inimigo extends ElementoBasico {
             if (this.getLin() == outro.getLin() && this.getCol() == outro.getCol()) {
                 Personagem per = (Personagem) outro;
         
-                per.setImage(createImageIcon("wall.png"));
+                per.setImage(createImageIcon("dead.png"));
                 getTabuleiro().insereElemento(per);
                 soundPlayer.playSound("die.wav");
                 soundPlayer.stopSound();
