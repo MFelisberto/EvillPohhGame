@@ -144,10 +144,10 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Parede",lin,"wall.png",col,this);
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, this);
-           case 'g': return new Prisioner("Guru","wall.png", lin, col, this,"g");
-           case 'i': return new Prisioner("Io","parquet.png", lin, col, this,"i");
-           case 'l': return new Prisioner("Leitão","parquet.png", lin, col, this,"l");
-           case 'c': return new Prisioner("Chave","parquet.png", lin, col, this,"l");
+           case 'g': return new Prisioner("Tigrão","wall.png", lin, col, this,"g");
+           case 'i': return new Prisioner("Io","wall.png", lin, col, this,"i");
+           case 'l': return new Prisioner("Leitão","wall.png", lin, col, this,"l");
+           case 'c': return new Prisioner("Chave","wallArv.png", lin, col, this,"c");
            case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         port =new Porta("porta", "door.png", lin, col, this, niveis,app,nivelAt);
                          port.setAnterior(anterior);
@@ -227,17 +227,22 @@ public class Tabuleiro extends JPanel {
                     if (distancia <= 1) {
                         // Atualizar a imagem d
                         Prisioner prisioneiro = (Prisioner) elemento;
-                        prisioneiro.setImage(createImageIcon("trap.png"));
+                        prisioneiro.setImage(createImageIcon("dead.png"));
                     } else {
                         // Reverter para a imagem padrão 
                         Prisioner prisioneiro = (Prisioner) elemento;
+                        if(prisioneiro.getCod().equals("g")||prisioneiro.getCod().equals("l")||prisioneiro.getCod().equals("i")){
                         prisioneiro.setImage(createImageIcon("wall.png"));
                         if (distancia == 2) {
                             soundPlayer.playSound("die.wav");
                             soundPlayer.stopSound();
                            
-                             
-                        }}}}
+                        }}else prisioneiro.setImage(createImageIcon("wallArv.png"));
+                        if (distancia == 2) {
+                            soundPlayer.playSound("die.wav");
+                            soundPlayer.stopSound();
+                        }
+                    }}
                        
                     
                     }
@@ -246,6 +251,6 @@ public class Tabuleiro extends JPanel {
     
 }
 }
-
+}
 
 

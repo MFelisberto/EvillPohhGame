@@ -137,6 +137,10 @@ public void acao(ElementoBasico outro) {
         Parede parede = new Parede("Parede", lin, "wall.png", col, getTabuleiro());
         getTabuleiro().insereElemento(parede);
         getTabuleiro().removeElemento(prisioner); 
+        if(prisioner.getCod() == "c"){
+        Parede paredeC = new Parede("Parede", lin, "wallArv.png", col, getTabuleiro());
+        getTabuleiro().insereElemento(paredeC);
+        getTabuleiro().removeElemento(prisioner); }
         
     }
 }
