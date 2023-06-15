@@ -13,11 +13,8 @@ public class App extends JFrame implements ActionListener{
     private Tabuleiro tabuleiro;
     private Personagem personagem;
     private Inimigo inimigo;
-   
-   
     private Porta porta;
     
-
     public App(String niv,String nivelAt) {
         super();
         // Define os componentes da tela
