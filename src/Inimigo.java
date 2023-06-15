@@ -85,7 +85,7 @@ public class  Inimigo extends ElementoBasico {
         int distLin = Math.abs(personagem.getLin() - this.getLin());
         int distCol = Math.abs(personagem.getCol() - this.getCol());
     
-        if (distLin <= 4 && distCol <= 4 && (distLin == 0 || distCol == 0)) {
+        if (distLin <= 10 && distCol <= 10 && (distLin == 0 || distCol == 0)) {
             // Remove o inimigo da posição atual e avança em direção ao personagem
             getTabuleiro().insereElemento(anterior);
     
