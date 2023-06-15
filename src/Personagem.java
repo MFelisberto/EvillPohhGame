@@ -89,7 +89,13 @@ public void acao(ElementoBasico outro) {
         this.setImage(dead);
         getTabuleiro().insereElemento(this);
         JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
-        System.exit(0); // Fecha o jogo
+        try {
+            Thread.sleep(1); // Espera para poder dar o som 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.exit(0);; // Fecha o jogo
     }
 }
 

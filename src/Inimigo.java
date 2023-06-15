@@ -108,21 +108,40 @@ public class  Inimigo extends ElementoBasico {
 
     @Override
     public void acao(ElementoBasico outro) {
+        SoundPlayer soundPlayer = new SoundPlayer();
         ImageIcon dead = new ImageIcon("dead.png");
+        
         if (outro instanceof Personagem) {
             if (this.getLin() == outro.getLin() && this.getCol() == outro.getCol()) {
                 Personagem per = (Personagem) outro;
         
                 per.setImage(dead);
                 getTabuleiro().insereElemento(per);
+                soundPlayer.playSound("die.wav");
+                soundPlayer.stopSound();
                 JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
-                
-                System.exit(0); // Fecha o jogo
+                try {
+                    Thread.sleep(1); // Espera para poder dar o som 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+    
+                System.exit(0);
+                 // Fecha o jogo
             }
             
             Personagem per = (Personagem) outro;
                 per.setImage(dead);
                 getTabuleiro().insereElemento(per);
+                soundPlayer.playSound("die.wav");
+                soundPlayer.stopSound();
+                try {
+                    Thread.sleep(1); // Espera para poder dar o som 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+    
+                System.exit(0);
             JOptionPane.showMessageDialog(null, "Você perdeu o jogo!");
                 System.exit(0); 
         }
