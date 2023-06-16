@@ -134,7 +134,7 @@ public void acao(ElementoBasico outro) {
         // Substituir o prisioneiro por uma parede
         int lin = prisioner.getLin();
         int col = prisioner.getCol();
-        Parede parede = new Parede("Parede", lin, "wall.png", col, getTabuleiro());
+        Parede parede = new Parede("Parede", lin, "EmptyJail.png", col, getTabuleiro());
         getTabuleiro().insereElemento(parede);
         getTabuleiro().removeElemento(prisioner); 
         if(prisioner.getCod() == "c"){

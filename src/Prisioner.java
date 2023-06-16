@@ -7,6 +7,7 @@ public class Prisioner extends ElementoBasico {
         this.cod = cod;
         
     }
+    
 
     public String getCod() {
         return cod;
@@ -27,7 +28,7 @@ public class Prisioner extends ElementoBasico {
             personagem.setPri(getCod()); // Define o código do prisioneiro como o valor do atributo "pri" do personagem
             int lin = getLin();
             int col = getCol();
-            Parede parede = new Parede("Parede", lin, "wall.png", col, getTabuleiro());
+            Parede parede = new Parede("Parede", lin, "EmptyJail.png", col, getTabuleiro());
             getTabuleiro().insereElemento(parede);
             getTabuleiro().removeElemento(this); 
             if(this.getCod() == "c"){

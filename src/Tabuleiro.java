@@ -144,10 +144,10 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Parede",lin,"wall.png",col,this);
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, this);
-           case 'g': return new Prisioner("Guru","wall.png", lin, col, this,"g");
-           case 'i': return new Prisioner("Io","io.png", lin, col, this,"i");
-           case 'l': return new Prisioner("Leitão","porco.png", lin, col, this,"l");
-           case 'c': return new Prisioner("Chave","key.png", lin, col, this,"l");
+           case 'g': return new Prisioner("dead.png","wall.png", lin, col, this,"g");
+           case 'i': return new Prisioner("io.png","io.png", lin, col, this,"i");
+           case 'l': return new Prisioner("porco.png","porco.png", lin, col, this,"l");
+           case 'c': return new Prisioner("key.png","key.png", lin, col, this,"c");
            case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         port =new Porta("porta", "door.png", lin, col, this, niveis,app,nivelAt);
                          port.setAnterior(anterior);
@@ -156,12 +156,23 @@ public class Tabuleiro extends JPanel {
                         antg = new Inimigo("Inimigo","Pooh.png",lin,col,this);
                         antg.setAnterior(anterior);
                         return antg;
-       }    
+       }
+       case '#':{  ElementoBasico anterior = new Fundo("Fundo",lin,"grass.png",col,null);
+                        antg = new Inimigo("Inimigo","Pooh1.png",lin,col,this);
+                        antg.setAnterior(anterior);
+                        return antg;
+       }
+
            case '*': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         principal = new Personagem("boneco","Personagem.png",lin,col,this,"p");
                         principal.setAnterior(anterior);
                         return principal;
                     }
+                    case 'p': {  ElementoBasico anterior = new Fundo("Fundo",lin,"grass.png",col,null);
+                    principal = new Personagem("boneco","Personagem1.png",lin,col,this,"p");
+                    principal.setAnterior(anterior);
+                    return principal;
+                }
            default: throw new IllegalArgumentException("Personagem invalido: "+elem);
         }
 
@@ -227,7 +238,8 @@ public class Tabuleiro extends JPanel {
                     if (distancia <= 1) {
                         // Atualizar a imagem d
                         Prisioner prisioneiro = (Prisioner) elemento;
-                        prisioneiro.setImage(createImageIcon("dead.png"));
+                        String id = prisioneiro.getId();
+                        prisioneiro.setImage(createImageIcon(id));
                     } else {
                         // Reverter para a imagem padrão 
                         Prisioner prisioneiro = (Prisioner) elemento;
