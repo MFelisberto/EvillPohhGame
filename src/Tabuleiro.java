@@ -147,6 +147,7 @@ public class Tabuleiro extends JPanel {
            case 'g': return new Prisioner("dead.png","wall.png", lin, col, this,"g");
            case 'i': return new Prisioner("io.png","io.png", lin, col, this,"i");
            case 'l': return new Prisioner("porco.png","porco.png", lin, col, this,"l");
+           case 't': return new Prisioner("tigrao.png","tigrao.png", lin, col, this,"l");
            case 'c': return new Prisioner("key.png","key.png", lin, col, this,"c");
            case '!': {  ElementoBasico anterior = new Fundo("Fundo",lin,"parquet.png",col,null);
                         port =new Porta("porta", "door.png", lin, col, this, niveis,app,nivelAt);

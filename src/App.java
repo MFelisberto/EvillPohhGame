@@ -20,11 +20,8 @@ public class App extends JFrame implements ActionListener{
         // Define os componentes da tela
         tabuleiro = new Tabuleiro(this,nivelAt);
         
-        
-        
-        
         JPanel botoesDirecao = new JPanel(new FlowLayout());
-         
+        
         JButton butDir = new JButton("Direita");
         butDir.addActionListener(this);
         JButton butEsq = new JButton("Esquerda");
@@ -55,7 +52,7 @@ public class App extends JFrame implements ActionListener{
        
         // Exibe a janela
         this.add(painelGeral);
-        this.setSize(1300,1100);
+        this.setSize(900,830);
         this.setTitle("Evil Pooh");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -116,4 +113,4 @@ public class App extends JFrame implements ActionListener{
         });
     }
     
-    }
+}

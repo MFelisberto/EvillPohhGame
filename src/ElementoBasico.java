@@ -18,7 +18,7 @@ public abstract class ElementoBasico extends JButton {
         this.tabuleiro = tabuleiro;
 
         this.imagem = Tabuleiro.createImageIcon(iconPath); 
-        this.setIcon( resize(this.imagem, 90, 50) ); 
+        this.setIcon( resize(this.imagem, 50, 50) ); 
         //this.setBorder(BorderFactory.createBevelBorder(0,Color.RED, Color.BLACK ));
         this.setMargin(new Insets(0,0,0,0));
         this.setContentAreaFilled(false);
@@ -40,7 +40,7 @@ public abstract class ElementoBasico extends JButton {
     public void setImage(ImageIcon imagem){
         this.imagem = imagem;
         //this.setIcon(imagem); 
-        this.setIcon(resize(this.imagem, 90, 50));
+        this.setIcon(resize(this.imagem, 50, 50));
     }
 
     public String getId() {
