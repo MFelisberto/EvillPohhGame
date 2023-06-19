@@ -144,7 +144,7 @@ public class Tabuleiro extends JPanel {
            case '-': return new Parede("Parede",lin,"wall.png",col,this);
            case '~': return new Parede("Parede1",lin,"wallArv.png",col,this);
            case '+': return new Armadilha("armadilha","parquet.png", lin, col, this);
-           case 'g': return new Prisioner("dead.png","wall.png", lin, col, this,"g");
+           case 'g': return new Prisioner("tigrao.png","tigrao.png", lin, col, this,"g");
            case 'i': return new Prisioner("io.png","io.png", lin, col, this,"i");
            case 'l': return new Prisioner("porco.png","porco.png", lin, col, this,"l");
            case 't': return new Prisioner("tigrao.png","tigrao.png", lin, col, this,"l");
@@ -225,6 +225,7 @@ public class Tabuleiro extends JPanel {
         int linPersonagem = personagem.getLin();
         int colPersonagem = personagem.getCol();
         SoundPlayer soundPlayer = new SoundPlayer();
+        SoundPlayer sound = new SoundPlayer();
         
 
         for (int lin = 0; lin < MAXLIN; lin++) {
@@ -247,13 +248,13 @@ public class Tabuleiro extends JPanel {
                         if(prisioneiro.getCod().equals("g")||prisioneiro.getCod().equals("l")||prisioneiro.getCod().equals("i")){
                         prisioneiro.setImage(createImageIcon("wall.png"));
                         if (distancia == 2) {
-                            soundPlayer.playSound("die.wav");
+                            soundPlayer.playSound("help.wav");
                             soundPlayer.stopSound();
                            
                         }}else prisioneiro.setImage(createImageIcon("wallArv.png"));
                         if (distancia == 2) {
-                            soundPlayer.playSound("die.wav");
-                            soundPlayer.stopSound();
+                            sound.playSound("hole.wav");
+                            sound.stopSound();
                         }
                     }}
                        
