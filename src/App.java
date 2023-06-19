@@ -119,7 +119,7 @@ public class App extends JFrame implements ActionListener{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new App("nivel5.txt","nivel5.txt");
+                new App("nivel1.txt","nivel1.txt");
             }
         });
     }
