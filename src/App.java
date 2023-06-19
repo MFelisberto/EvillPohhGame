@@ -19,8 +19,9 @@ public class App extends JFrame implements ActionListener{
         super();
         // Define os componentes da tela
         tabuleiro = new Tabuleiro(this,nivelAt);
+        GridBagConstraints cnt= new GridBagConstraints();
         
-        JPanel botoesDirecao = new JPanel(new FlowLayout());
+        JPanel botoesDirecao = new JPanel(new GridBagLayout());
         
         JButton butDir = new JButton("Direita");
         butDir.addActionListener(this);
@@ -31,10 +32,20 @@ public class App extends JFrame implements ActionListener{
         JButton butBaixo = new JButton("Abaixo");
         butBaixo.addActionListener(this);
         
-        botoesDirecao.add(butEsq);
-        botoesDirecao.add(butDir);
-        botoesDirecao.add(butCima);
-        botoesDirecao.add(butBaixo);
+
+        cnt.gridx=0;
+        cnt.gridy=1;
+        botoesDirecao.add(butEsq,cnt);
+        cnt.gridx=2;
+        cnt.gridy=1;
+        botoesDirecao.add(butDir,cnt);
+        cnt.gridx=1;
+        cnt.gridy=0;
+        botoesDirecao.add(butCima,cnt);
+        cnt.gridx=1;
+        cnt.gridy=1;
+        botoesDirecao.add(butBaixo,cnt);
+        
               
         JPanel painelGeral = new JPanel();
         painelGeral.setLayout(new BoxLayout(painelGeral, BoxLayout.PAGE_AXIS));
@@ -108,7 +119,7 @@ public class App extends JFrame implements ActionListener{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new App("nivel1.txt","nivel1.txt");
+                new App("nivel5.txt","nivel5.txt");
             }
         });
     }

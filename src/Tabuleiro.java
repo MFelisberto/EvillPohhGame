@@ -30,6 +30,8 @@ public class Tabuleiro extends JPanel {
         niveis.adicione("nivel1.txt");
         niveis.adicione("nivel2.txt");
         niveis.adicione("nivel3.txt");
+        niveis.adicione("nivel4.txt");
+        niveis.adicione("nivel5.txt");
         
        
         // Cria o conjunto de células vazia e as insere no layout
@@ -224,8 +226,8 @@ public class Tabuleiro extends JPanel {
     public void verificarPrisioneiro(Personagem personagem) {
         int linPersonagem = personagem.getLin();
         int colPersonagem = personagem.getCol();
-        SoundPlayer soundPlayer = new SoundPlayer();
-        SoundPlayer sound = new SoundPlayer();
+        
+       
         
 
         for (int lin = 0; lin < MAXLIN; lin++) {
@@ -247,14 +249,14 @@ public class Tabuleiro extends JPanel {
                         Prisioner prisioneiro = (Prisioner) elemento;
                         if(prisioneiro.getCod().equals("g")||prisioneiro.getCod().equals("l")||prisioneiro.getCod().equals("i")){
                         prisioneiro.setImage(createImageIcon("wall.png"));
+                        
                         if (distancia == 2) {
-                            soundPlayer.playSound("help.wav");
-                            soundPlayer.stopSound();
+                            prisioneiro.setImage(createImageIcon("wall.png"));
+                       
+                            
                            
                         }}else prisioneiro.setImage(createImageIcon("wallArv.png"));
-                        if (distancia == 2) {
-                            sound.playSound("hole.wav");
-                            sound.stopSound();
+                        
                         }
                     }}
                        
@@ -265,6 +267,6 @@ public class Tabuleiro extends JPanel {
     
 }
 }
-}
+
 
 
